@@ -6,7 +6,10 @@ import desafioIntermediario.entities.Cliente;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteDAO {
 
@@ -36,6 +39,39 @@ public class ClienteDAO {
             ConnectionFactory.closeConnection(con);
 
             }
+
+    }
+
+    public List<Cliente> readClientes(){
+
+        Connection con = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+
+        ArrayList<Cliente> clientes = new ArrayList<>();
+
+        try {
+
+            stmt = con.prepareStatement("SELECT * FROM Cliente");
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+
+                clientes.add(new Cliente(rs.getString("nome"), rs.getString("cpfCliente"),
+                        rs.getString("telefone")));
+            }
+
+
+        }catch (SQLException e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            ConnectionFactory.closeConnection(con);
+            return clientes;
+        }
 
     }
 }
