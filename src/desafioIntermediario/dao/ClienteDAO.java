@@ -74,4 +74,48 @@ public class ClienteDAO {
         }
 
     }
+
+    public void deleteCliente(String cpf){
+
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+
+
+            stmt = con.prepareStatement(String.format("DELETE FROM Cliente WHERE cpfCliente = '%s'", cpf));
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso!!!");
+
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Cliente não existe ou problema de servidor.");
+            e.printStackTrace();
+        }finally {
+            ConnectionFactory.closeConnection(con);
+        }
+
+    }
+
+    public void updateCliente(String cpf, String telefone){
+
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+
+            stmt = con.prepareStatement(String.format("UPDATE Cliente SET telefone = %s WHERE cpfCliente = %s", telefone, cpf));
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Update realizado com sucesso");
+
+
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar cliente (Dados incorretos ou servidor com problema.)");
+            e.printStackTrace();
+        }
+
+    }
 }

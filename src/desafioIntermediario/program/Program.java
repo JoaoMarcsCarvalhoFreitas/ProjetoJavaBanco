@@ -29,5 +29,11 @@ public class Program {
             System.out.println(cliente2.toString());
         }
 
+        // Update de telefone Cliente
+        cl.updateCliente(cliente1.getCpf(), "94992345678");
+
+        // Deletar o cliente pelo CPF
+        cl.deleteCliente(cliente1.getCpf());
+
     }
 }
