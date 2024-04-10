@@ -59,7 +59,7 @@ public class ClienteDAO {
             while (rs.next()){
 
                 clientes.add(new Cliente(rs.getString("nome"), rs.getString("cpfCliente"),
-                        rs.getString("telefone")));
+                        rs.getString("telefone"), Integer.parseInt(rs.getString("idCliente"))));
             }
 
 

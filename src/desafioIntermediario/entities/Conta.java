@@ -2,27 +2,27 @@ package desafioIntermediario.entities;
 
 public class Conta {
 
-    private Cliente dono;
+    private int idDono;
     private double saldo;
     private String senha;
     private String chaveTransferencia;
 
     private boolean status;
 
-    public Conta(Cliente dono, double saldo, String senha, String chaveTransferencia) {
-        this.dono = dono;
+    public Conta(int dono, double saldo, String senha, String chaveTransferencia) {
+        this.idDono = dono;
         this.saldo = saldo;
         this.senha = senha;
         this.chaveTransferencia = chaveTransferencia;
         this.status = true;
     }
 
-    public Cliente getDono() {
-        return dono;
+    public int getDono() {
+        return idDono;
     }
 
-    public void setDono(Cliente dono) {
-        this.dono = dono;
+    public void setDono(int dono) {
+        this.idDono = dono;
     }
 
     public double getSaldo() {
